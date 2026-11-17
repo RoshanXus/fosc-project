@@ -1,0 +1,6 @@
+force_fn,max_pos_diff_final,max_pos_diff_any_step,step_where_diff_first_exceeds_1e-6,max_E_diff,E_final
+numpy (tm.pair_forces),0.000e+00,0.000e+00,never,0.000e+00,303.9046
+cell list (Numba),6.192e-10,1.321e-09,never,6.537e-08,303.9046
+all-pairs (Numba),6.198e-10,1.318e-09,never,6.544e-08,303.9046
+python loop (tm.pair_forces_loop),6.193e-10,1.320e-09,never,6.540e-08,303.9046
+cell list vs python loop (not vs numpy),3.881e-13,1.001e-12,never,4.582e-11,303.9046

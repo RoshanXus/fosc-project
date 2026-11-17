@@ -1,0 +1,19 @@
+hard version vs tm.pair_forces, N=1000: max |dF| = 1.27e-10
+hard version U_shift vs tm.potential_energy - 10.8*npairs: diff = 5.46e-12 (npairs 712 vs 712)
+smooth version: max |F - (-dU/dx finite diff)| on 20 particles = 7.89e-07
+smooth pair term at r = 1.499999999: U = -7.125000, F = -10.500000
+smooth pair term at r = 1.500000001: U = -7.125000, F = -10.500000
+smooth pair term at r = 1.999999999: U = -0.000000, F = -0.000000
+hard+clamp stepper vs tm.run, N=12 dt=0.01: max |pos diff| final = 6.18e-10, E_shift drift = 0.1859
+hard cutoff + clamp (handout): largest dt with worst-seed drift < 1%: 0.0005
+hard cutoff + clamp (handout): largest dt with worst-seed drift < 5%: 0.002
+hard cutoff + clamp (handout): log-log slope of worst-seed drift for dt <= 0.01: 1.14
+hard cutoff + mirror: largest dt with worst-seed drift < 1%: 0.0005
+hard cutoff + mirror: largest dt with worst-seed drift < 5%: 0.002
+hard cutoff + mirror: log-log slope of worst-seed drift for dt <= 0.01: 1.14
+smooth cutoff + clamp: largest dt with worst-seed drift < 1%: 0.0005
+smooth cutoff + clamp: largest dt with worst-seed drift < 5%: 0.005
+smooth cutoff + clamp: log-log slope of worst-seed drift for dt <= 0.01: 0.80
+smooth cutoff + mirror: largest dt with worst-seed drift < 1%: 0.002
+smooth cutoff + mirror: largest dt with worst-seed drift < 5%: 0.005
+smooth cutoff + mirror: log-log slope of worst-seed drift for dt <= 0.01: 1.35

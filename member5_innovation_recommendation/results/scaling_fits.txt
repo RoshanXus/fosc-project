@@ -1,0 +1,6 @@
+numpy: t ~ N^2.18 (fit for N >= 500)
+numba all-pairs: t ~ N^2.00 (fit for N >= 2000)
+numba cell list: t ~ N^1.10 (fit for N >= 5000)
+break-even cell list vs numpy: N ~ 12 (already faster at the smallest N)
+break-even cell list vs numba all-pairs: N ~ 40 (between N=25 and N=50)
+break-even numba all-pairs vs numpy: N ~ 12 (already faster at the smallest N)

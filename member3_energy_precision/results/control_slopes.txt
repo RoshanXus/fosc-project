@@ -1,0 +1,9 @@
+relaxed cluster: max |F| after relaxation = 2.50e-08
+pair distances in the cluster: min 0.317, max 1.122 (rc = 2.0)
+fitted eps = C * dt^p on dt <= 0.02
+A_cluster_no_wall    euler  p = 1.024   C = 0.308
+A_cluster_no_wall    verlet p = 2.001   C = 1.21
+B_cluster_wall       euler  p = 0.917   C = 0.536
+B_cluster_wall       verlet p = 0.874   C = 0.281
+default_Eshift       euler  p = 0.925   C = 10.3
+default_Eshift       verlet p = 1.026   C = 16.1

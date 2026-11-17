@@ -1,0 +1,3 @@
+first call (includes JIT compile) vs second call, fresh python process each, N = 100
+cell list: first call median of 3 = 0.904 s (runs: 0.957, 0.881, 0.904), second call = 1.50e-05 s
+all-pairs: first call median of 3 = 0.344 s (runs: 0.344, 0.345, 0.340), second call = 1.54e-05 s

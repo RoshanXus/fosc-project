@@ -1,0 +1,6 @@
+U at the cutoff 0.5*k*(rc-r0)^2 = 10.8000
+steps with a pair-count change: 219 of 1000
+mean |dE| on steps where npairs changes: 11.7920
+mean |dE| on other steps: 0.0274
+least-squares slope of dE vs d(npairs) on those steps: 10.7959 (expect ~10.8)
+max |dE_shift| per step: 1.4305

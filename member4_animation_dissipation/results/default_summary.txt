@@ -1,0 +1,8 @@
+t = 0: K = 3.343, U = 33.22, E = 36.57, E_shifted = -49.83, pairs = 8, largest cluster = 7
+t = 10: K = 201.9, U = 102, E = 303.9, E_shifted = -52.5, pairs = 33, largest cluster = 11
+t = 20: K = 280.4, U = 89.71, E = 370.1, E_shifted = -61.85, pairs = 40, largest cluster = 11
+max pair count 66 at t = 13.95 (largest cluster 12)
+fraction of steps with t >= 10 where the largest cluster has >= 10 particles: 0.976
+fraction of steps with some pair closer than 0.1: 0.111, closest approach 0.003686
+max K = 508.9, max speed = 16.93
+total wall contacts (particle-steps on a wall) = 52

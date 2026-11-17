@@ -1,0 +1,9 @@
+cell-list compile time (first call, fresh process): 0.904 s
+N =   12: Verlet step numpy 3.697e-05 s, cell 1.996e-05 s, saving 1.701e-05 s/step -> compile paid back after 53155 steps
+N =  100: Verlet step numpy 4.714e-04 s, cell 2.647e-05 s, saving 4.449e-04 s/step -> compile paid back after 2032 steps
+N = 1000: Verlet step numpy 6.217e-02 s, cell 1.212e-04 s, saving 6.205e-02 s/step -> compile paid back after 15 steps
+handout run N=12, 1000 steps: numpy 0.0566 s, cell force + cell energy 0.0246 s (ratio 2.30); with the 0.90 s force compile the Numba version needs at least 0.93 s in a fresh python
+largest N with one force call <= 0.01 s:  numpy ~ 399  all-pairs ~ 3259  cell ~ 78504
+largest N with one force call <= 0.10 s:  numpy ~ 1267  all-pairs ~ 10459  cell ~ 607497
+largest N with one force call <= 1.00 s:  numpy ~ 3554  all-pairs ~ 33750  cell > 1000000 (largest measured)
+memory at N = 5000: tm.pair_forces peak 1.625e+09 bytes, cell list peak 2.036e+05 bytes, ratio 7981

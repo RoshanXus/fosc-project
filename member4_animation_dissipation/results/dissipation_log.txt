@@ -1,0 +1,15 @@
+gamma=0.0: t_relax=None t_speed=None t_energy=None t_lastpair=599.98 rate=nan E_end=742.6829 U_end=36.0189 pairs=10 clusters=[5, 2, 2, 1, 1, 1] balance mismatch=684.5 of W=0
+gamma=0.05: t_relax=348.94 t_speed=348.94 t_energy=168.9 t_lastpair=48.23 rate=0.0502 E_end=30.5849 U_end=30.5849 pairs=55 clusters=[11, 1] balance mismatch=20.23 of W=533.8
+gamma=0.1: t_relax=192.26 t_speed=192.26 t_energy=107.11 t_lastpair=37.30 rate=0.1001 E_end=30.5849 U_end=30.5849 pairs=55 clusters=[11, 1] balance mismatch=5.106 of W=518.7
+gamma=0.5: t_relax=30.91 t_speed=30.91 t_energy=16.3 t_lastpair=2.15 rate=0.5005 E_end=8.6717 U_end=8.6717 pairs=22 clusters=[7, 2, 1, 1, 1] balance mismatch=1.435 of W=180.5
+gamma=1.0: t_relax=15.870000000000001 t_speed=15.870000000000001 t_energy=8.45 t_lastpair=1.13 rate=1 E_end=8.6717 U_end=8.6717 pairs=22 clusters=[7, 2, 1, 1, 1] balance mismatch=0.7245 of W=179.8
+gamma=2.0: t_relax=8.290000000000001 t_speed=8.290000000000001 t_energy=4.49 t_lastpair=0.66 rate=1.998 E_end=8.6717 U_end=8.6717 pairs=22 clusters=[7, 2, 1, 1, 1] balance mismatch=-0.5891 of W=178.5
+gamma=5.0: t_relax=6.3100000000000005 t_speed=6.3100000000000005 t_energy=3.22 t_lastpair=1.00 rate=2.139 E_end=8.6717 U_end=8.6717 pairs=21 clusters=[7, 1, 1, 1, 1, 1] balance mismatch=-0.3287 of W=168
+gamma=10.0: t_relax=13.11 t_speed=13.11 t_energy=7.55 t_lastpair=1.57 rate=0.8164 E_end=8.6717 U_end=8.6717 pairs=21 clusters=[7, 1, 1, 1, 1, 1] balance mismatch=-0.2975 of W=168
+gamma=20.0: t_relax=16.68 t_speed=16.68 t_energy=8.700000000000001 t_lastpair=3.66 rate=0.4338 E_end=8.6717 U_end=8.6717 pairs=21 clusters=[7, 1, 1, 1, 1, 1] balance mismatch=0.1551 of W=168.4
+gamma,dt,t_end,drop_E_shifted,drag_work_W,mismatch,mismatch_over_W,steps_pair_set_changed,sum_abs_step_mismatch
+0.1,0.02,100,624.723,669.945,45.2217,0.0675,457,582.7
+0.1,0.01,100,513.463,518.569,5.1057,0.009846,342,174.15
+0.1,0.005,100,353.525,354.217,0.691533,0.001952,171,33.341
+0.1,0.0025,100,423.216,420.363,-2.85298,-0.006787,317,27.402
+

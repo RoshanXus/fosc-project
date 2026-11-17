@@ -1,0 +1,28 @@
+euler dt=0.01: max |pos - tm.run pos| = 0.0e+00 (local stepper check)
+  E_shift(0) = -49.8347, E_shift(end) = -43.8004, eps_Eshift_max = 0.1429
+  wall clamps: 5 steps with a clamp that changes U; sum of clamp dU = 1.8817, sum |clamp dU| = 1.8817
+  pair_crosses_rc    steps    201  net dE  -93.463  sum|dE|  110.654  max|dE| 3.1967
+  wall_contact       steps     14  net dE    0.580  sum|dE|    3.492  max|dE| 1.1803
+  close_pass_r<0.1   steps     74  net dE    0.059  sum|dE|   20.295  max|dE| 1.4604
+  smooth             steps    711  net dE   98.858  sum|dE|  125.767  max|dE| 1.1987
+euler dt=0.001: max |pos - tm.run pos| = 0.0e+00 (local stepper check)
+  E_shift(0) = -49.8347, E_shift(end) = -49.4618, eps_Eshift_max = 0.0266
+  wall clamps: 10 steps with a clamp that changes U; sum of clamp dU = 0.1822, sum |clamp dU| = 0.1822
+  pair_crosses_rc    steps    269  net dE  -15.414  sum|dE|   15.446  max|dE| 0.2543
+  wall_contact       steps     20  net dE   -0.135  sum|dE|    0.198  max|dE| 0.0419
+  close_pass_r<0.1   steps    769  net dE   -1.500  sum|dE|    3.123  max|dE| 0.1928
+  smooth             steps   8942  net dE   17.422  sum|dE|   21.284  max|dE| 0.0204
+verlet dt=0.01: max |pos - tm.run pos| = 0.0e+00 (local stepper check)
+  E_shift(0) = -49.8347, E_shift(end) = -52.4954, eps_Eshift_max = 0.1859
+  wall clamps: 6 steps with a clamp that changes U; sum of clamp dU = 2.2365, sum |clamp dU| = 2.2365
+  pair_crosses_rc    steps    238  net dE   -3.736  sum|dE|   72.677  max|dE| 1.4305
+  wall_contact       steps     12  net dE    1.817  sum|dE|    2.410  max|dE| 0.9696
+  close_pass_r<0.1   steps     50  net dE   -0.590  sum|dE|    6.260  max|dE| 1.0492
+  smooth             steps    700  net dE   -0.151  sum|dE|    6.334  max|dE| 0.1778
+verlet dt=0.001: max |pos - tm.run pos| = 0.0e+00 (local stepper check)
+  E_shift(0) = -49.8347, E_shift(end) = -49.1844, eps_Eshift_max = 0.0130
+  wall clamps: 10 steps with a clamp that changes U; sum of clamp dU = 0.3635, sum |clamp dU| = 0.3635
+  pair_crosses_rc    steps    143  net dE    0.311  sum|dE|    3.551  max|dE| 0.0958
+  wall_contact       steps     19  net dE    0.336  sum|dE|    0.336  max|dE| 0.1965
+  close_pass_r<0.1   steps    529  net dE    0.005  sum|dE|    0.066  max|dE| 0.0095
+  smooth             steps   9309  net dE   -0.001  sum|dE|    0.048  max|dE| 0.0002

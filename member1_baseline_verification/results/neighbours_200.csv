@@ -1,0 +1,4 @@
+rc,avg_neighbours,estimate_rho_pi_rc2,ratio,self_neighbours,max_asym_dist,max_abs_Fvec_minus_Floop,norm_sum_F
+2,0.76,1.00028,0.759785,0,0,2.36025e-11,1.82239e-14
+3,1.97,2.25064,0.875308,0,0,3.30971e-11,7.32411e-14
+5,5.5,6.25177,0.879751,0,0,6.32099e-11,3.98427e-13

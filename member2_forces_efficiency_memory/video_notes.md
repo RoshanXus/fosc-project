@@ -1,0 +1,11 @@
+# Video notes: Member 2 (efficiency and memory, about 3 min)
+
+- Opening (show `pairforce.c` for 5 s, then the force-check table in the report). We compared three versions of the same spring force: the Python double loop, the NumPy vectorized version and a C loop compiled at -O0 and -O2, called from Python so it gets the same positions. First we checked that they agree: C matches the Python loop exactly (difference 0.0), and NumPy differs by about 1e-10 out of forces around 40.
+- Method (one sentence). Fixed handout density (12 particles per 100 area), N from 50 to 4000, 7 repeats each, median reported, on a machine shared with the other four of us, which is why we use medians.
+- Show `time_vs_N.png`. All curves have slope about 2, so the cost is O(N^2): doubling N costs four times the time. NumPy's slope is 2.2 because its big arrays stop fitting in cache.
+- Show the speedup table / `speedup.png`. C -O2 is 110 to 161x faster than Python, and -O0 is 40 to 49x, so the optimiser adds about 3x. NumPy is only 1.7x faster at N = 50, and at N = 1000 it is no faster at all (0.94x).
+- Show `bottleneck_breakdown.png`, right panel. Why NumPy does not win: 53% of the "Python" loop is actually NumPy's `pairwise_distances`. Only 762 of 500,000 pairs are within the cutoff, so the slow Python force code hardly runs. The rest is about 40 ns per `neighbors[i, j]` lookup.
+- Left panel. In NumPy, the two sums over the length-2 axis take two thirds of the time. Splitting x and y into separate arrays, with the same maths and the same memory, made it 2.8 to 5.4x faster. So layout matters, not just "vectorized or not".
+- Switch to `memory_scaling.png`, left panel. The displacement array is N^2 * 2 * itemsize: 1.6 GB at N = 10,000 in float64, and nbytes matches exactly. But one real force call peaks at 4 times that, 65 * N^2 bytes, because of the temporaries (d, dist, u, fmag, fmag*u).
+- Right panel and the numbers from `memory_limits.txt`. N = 5000 takes 2.2 s per force call, so a 1000-step run takes about 48 minutes. N = 10,000 takes 3.2 hours and 6.5 GB. Our answer: vectorized NumPy becomes impractical at about N = 5000 on this machine because of time, and above about 16,000 it does not fit in RAM at all.
+- Hand-over. Fast for small N does not mean scalable. C removes the memory problem but is still N^2. Member 5's cell list removes the N^2 itself.

@@ -1,0 +1,6 @@
+call (N = 12),median_time_per_call_us
+tm.pair_forces(pos)  [numpy],20.096
+njit with default args, called as f(pos),31.296
+njit all-pairs, all args explicit,0.603
+njit cell list, all args explicit,0.834
+cell list through make_cell_force(L) wrapper,0.834

@@ -1,0 +1,5 @@
+variant (N=12 1000 Verlet steps via tm.run),median_time_s,E_final
+numpy force + numpy energy (handout),0.0566,303.9046
+cell force + numpy energy,0.0401,303.9046
+cell force + cell energy,0.0246,303.9046
+cell force + cell energy, save_every=10,0.0210,303.9046

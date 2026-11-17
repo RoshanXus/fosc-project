@@ -1,0 +1,5 @@
+step_class,n_steps,sum_dEsh,sum_abs_dEsh
+pair set changed,20396,215.83,9843.5
+pair closer than 0.1 (no pair change),2518,38.811,422.52
+wall contact (none of the above),5517,430.26,517.81
+other steps,31569,-0.38804,380.91

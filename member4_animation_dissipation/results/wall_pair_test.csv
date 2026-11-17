@@ -1,0 +1,3 @@
+walls,n_cases,mean_dEsh,mean_abs_dEsh,max_abs_dEsh
+clamp (toymodel),200,0.1473,0.1982,1.322
+mirror,200,-0.01398,0.1479,1.617

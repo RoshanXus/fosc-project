@@ -1,0 +1,48 @@
+check;value;target;result
+itemsize float64 == sizeof(double);8;8;PASS
+itemsize float32 == sizeof(float);4;4;PASS
+max |dist - dist.T|;0.0;0.0;PASS
+max |d + d.transpose(1,0,2)|;0.0;0.0;PASS
+max |diag(dist)|;0.0;0.0;PASS
+number of True on diag(neighbors);0;0;PASS
+neighbors symmetric (count of nb != nb.T);0;0;PASS
+max |dist - dist_loop|;0.0;< 1e-12;PASS
+4p max |dist - dist.T|;0.0;0.0;PASS
+4p max |diag(dist)|;0.0;0.0;PASS
+4p neighbour counts rc=2.0;[1, 1, 0, 0];[1, 1, 0, 0];PASS
+4p self-neighbours rc=2.0;0;0;PASS
+4p neighbour counts rc=3.0;[2, 2, 1, 1];[2, 2, 1, 1];PASS
+4p self-neighbours rc=3.0;0;0;PASS
+4p max |F - F_hand|;9.00257646208047e-12;< 1e-9;PASS
+4p max |F_loop - F_hand|;0.0;~0;PASS
+4p potential energy (hand: 0.5*15*1.2^2 = 10.8);10.799999999999999;10.8;PASS
+max |F_vec - F_loop|;1.0832224006662727e-11;< 1e-9;PASS
+handout wall test x == L and vx < 0;(10.0, -1.0);(10.0, '<0');PASS
+wall left: pos [-0.1, 5.0] -> [0.0, 5.0], vel [-0.7, 0.2] -> [0.7, 0.2];True;True;PASS
+wall right: pos [10.1, 5.0] -> [10.0, 5.0], vel [0.7, 0.2] -> [-0.7, 0.2];True;True;PASS
+wall bottom: pos [5.0, -0.1] -> [5.0, 0.0], vel [0.2, -0.7] -> [0.2, 0.7];True;True;PASS
+wall top: pos [5.0, 10.1] -> [5.0, 10.0], vel [0.2, 0.7] -> [0.2, -0.7];True;True;PASS
+wall corner: pos [-0.2, 10.3] -> [0.0, 10.0], vel [-0.5, 0.9] -> [0.5, -0.9];True;True;PASS
+wall inside: pos [3.0, 4.0] -> [3.0, 4.0], vel [0.5, -0.5] -> [0.5, -0.5];True;True;PASS
+max over run ||sum F|| (vectorized, float64);3.261e-14;~1e-14;PASS
+max over run ||sum F|| (loop, float64);2.842e-14;~1e-14;PASS
+max over run ||sum F|| (vectorized, float32);1.974e-05;~1e-5;PASS
+max over run ||sum F|| (Euler, float64);2.512e-14;~1e-14;PASS
+max |pos_vec - pos_loop| over whole run;1.320e-09;small;PASS
+verlet_f64: x in [0, 10], y in [0, 10], coords outside box;0;0;PASS
+verlet_loop_f64: x in [0, 10], y in [0, 10], coords outside box;0;0;PASS
+euler_f64: x in [0, 10], y in [0, 10], coords outside box;0;0;PASS
+verlet_f32: x in [0, 10], y in [0, 10], coords outside box;0;0;PASS
+all 1001 frames: max |dist - dist.T|;0.0;0.0;PASS
+all 1001 frames: max |diag(dist)|;0.0;0.0;PASS
+all 1001 frames: total self-neighbour entries;0;0;PASS
+run does not modify input pos/vel;True;True;PASS
+float32 in -> pairwise dist dtype;float32;float32;PASS
+float32 in -> pair_forces dtype;float32;float32;PASS
+float32 in -> pair_forces_loop dtype;float32;float32;PASS
+float32 in -> potential_energy dtype;float32;float32;PASS
+float32 in -> kinetic_energy dtype;float32;float32;PASS
+float32 in -> step_euler pos dtype;float32;float32;PASS
+float32 in -> step_verlet pos dtype;float32;float32;PASS
+float32 in -> run pos dtype;float32;float32;PASS
+float32 in -> run E dtype;float32;float32;PASS

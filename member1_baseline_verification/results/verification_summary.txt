@@ -1,0 +1,108 @@
+=== 1. dtype, itemsize and nbytes (handout section 1) ===
+pos.shape (12, 2) vel.shape (12, 2) mass.shape (12,)
+float64 pos: dtype=float64, itemsize=8, nbytes=192
+float32 pos: dtype=float32, itemsize=4, nbytes=96
+C on this machine (ctypes): sizeof(double)=8, sizeof(float)=4
+nbytes ratio float64/float32 = 2.0
+  itemsize float64 == sizeof(double): 8   (target 8)  -> PASS
+  itemsize float32 == sizeof(float): 4   (target 4)  -> PASS
+
+=== 2. distance matrix and neighbour mask, N=12 initial positions ===
+shapes d, dist, neighbors: (12, 12, 2) (12, 12) (12, 12)
+  max |dist - dist.T|: 0.0   (target 0.0)  -> PASS
+  max |d + d.transpose(1,0,2)|: 0.0   (target 0.0)  -> PASS
+  max |diag(dist)|: 0.0   (target 0.0)  -> PASS
+  number of True on diag(neighbors): 0   (target 0)  -> PASS
+  neighbors symmetric (count of nb != nb.T): 0   (target 0)  -> PASS
+  max |dist - dist_loop|: 0.0   (target < 1e-12)  -> PASS
+neighbour count per particle (rc=2): [3, 2, 2, 2, 0, 1, 2, 0, 0, 0, 0, 4]
+number of neighbour pairs (i<j): 8
+
+=== 3. hand-made 4-particle example ===
+distance matrix:
+[[0.     2.     2.5    3.6056]
+ [2.     0.     3.2016 2.2361]
+ [2.5    3.2016 0.     3.0414]
+ [3.6056 2.2361 3.0414 0.    ]]
+  4p max |dist - dist.T|: 0.0   (target 0.0)  -> PASS
+  4p max |diag(dist)|: 0.0   (target 0.0)  -> PASS
+  4p neighbour counts rc=2.0: [1, 1, 0, 0]   (target [1, 1, 0, 0])  -> PASS
+  4p self-neighbours rc=2.0: 0   (target 0)  -> PASS
+  4p neighbour counts rc=3.0: [2, 2, 1, 1]   (target [2, 2, 1, 1])  -> PASS
+  4p self-neighbours rc=3.0: 0   (target 0)  -> PASS
+vectorized forces on 4 particles (rc=2):
+[[ 18.   0.]
+ [-18.   0.]
+ [  0.   0.]
+ [  0.   0.]]
+  4p max |F - F_hand|: 9.00257646208047e-12   (target < 1e-9)  -> PASS
+  4p max |F_loop - F_hand|: 0.0   (target ~0)  -> PASS
+  4p potential energy (hand: 0.5*15*1.2^2 = 10.8): 10.799999999999999   (target 10.8)  -> PASS
+
+=== 4. 200 random particles in a 50x50 box ===
+  rc=2.0: avg neighbours 0.760, estimate rho*pi*rc^2 = 1.000, ratio 0.760, self-neighbours 0, max|F_vec-F_loop| = 2.360e-11, ||sum F|| = 1.822e-14
+  rc=3.0: avg neighbours 1.970, estimate rho*pi*rc^2 = 2.251, ratio 0.875, self-neighbours 0, max|F_vec-F_loop| = 3.310e-11, ||sum F|| = 7.324e-14
+  rc=5.0: avg neighbours 5.500, estimate rho*pi*rc^2 = 6.252, ratio 0.880, self-neighbours 0, max|F_vec-F_loop| = 6.321e-11, ||sum F|| = 3.984e-13
+
+=== 5. loop vs vectorized pair force, N=12 initial positions ===
+  max |F_vec - F_loop|: 1.0832224006662727e-11   (target < 1e-9)  -> PASS
+  largest single force component |F|max = 16.833180241344827
+  ||sum_i F_i|| vec = 4.440892098500626e-15  loop = 1.9860273225978185e-15
+  forces on first 3 particles:
+[[ -7.29853 -16.07569]
+ [ 11.91839  12.71968]
+ [ 10.70352  13.22431]]
+
+=== 6. wall reflection tests ===
+  handout test: start [L+0.1, 5], v=[1, 0.3] -> pos [10.0, 5.0], vel [-1.0, 0.3]
+  handout wall test x == L and vx < 0: (10.0, -1.0)   (target (10.0, '<0'))  -> PASS
+  wall left: pos [-0.1, 5.0] -> [0.0, 5.0], vel [-0.7, 0.2] -> [0.7, 0.2]: True   (target True)  -> PASS
+  wall right: pos [10.1, 5.0] -> [10.0, 5.0], vel [0.7, 0.2] -> [-0.7, 0.2]: True   (target True)  -> PASS
+  wall bottom: pos [5.0, -0.1] -> [5.0, 0.0], vel [0.2, -0.7] -> [0.2, 0.7]: True   (target True)  -> PASS
+  wall top: pos [5.0, 10.1] -> [5.0, 10.0], vel [0.2, 0.7] -> [0.2, -0.7]: True   (target True)  -> PASS
+  wall corner: pos [-0.2, 10.3] -> [0.0, 10.0], vel [-0.5, 0.9] -> [0.5, -0.9]: True   (target True)  -> PASS
+  wall inside: pos [3.0, 4.0] -> [3.0, 4.0], vel [0.5, -0.5] -> [0.5, -0.5]: True   (target True)  -> PASS
+
+=== 7. full run: N=12, L=10, dt=0.01, 1000 steps, Verlet ===
+  max over run ||sum F|| (vectorized, float64): 3.261e-14   (target ~1e-14)  -> PASS
+  max over run ||sum F|| (loop, float64): 2.842e-14   (target ~1e-14)  -> PASS
+  max over run ||sum F|| (vectorized, float32): 1.974e-05   (target ~1e-5)  -> PASS
+  max over run ||sum F|| (Euler, float64): 2.512e-14   (target ~1e-14)  -> PASS
+  for scale: largest force component seen in the run = 72.580
+  mean ||sum F|| over run: vec 5.002e-15, loop 5.273e-15, float32 2.786e-06
+  max |pos_vec - pos_loop| over whole run: 1.320e-09   (target small)  -> PASS
+  verlet_f64: x in [0, 10], y in [0, 10], coords outside box: 0   (target 0)  -> PASS
+     wall hits: left x=0: 4, right x=L: 5, bottom y=0: 4, top y=L: 3, total 16
+  verlet_loop_f64: x in [0, 10], y in [0, 10], coords outside box: 0   (target 0)  -> PASS
+     wall hits: left x=0: 4, right x=L: 5, bottom y=0: 4, top y=L: 3, total 16
+  euler_f64: x in [0, 10], y in [0, 10], coords outside box: 0   (target 0)  -> PASS
+     wall hits: left x=0: 4, right x=L: 7, bottom y=0: 3, top y=L: 4, total 18
+  verlet_f32: x in [0, 10], y in [0, 10], coords outside box: 0   (target 0)  -> PASS
+     wall hits: left x=0: 4, right x=L: 5, bottom y=0: 4, top y=L: 3, total 16
+  all 1001 frames: max |dist - dist.T|: 0.0   (target 0.0)  -> PASS
+  all 1001 frames: max |diag(dist)|: 0.0   (target 0.0)  -> PASS
+  all 1001 frames: total self-neighbour entries: 0   (target 0)  -> PASS
+
+=== 8. API checks: inputs not modified, float32 stays float32 ===
+  run does not modify input pos/vel: True   (target True)  -> PASS
+  float32 in -> pairwise dist dtype: float32   (target float32)  -> PASS
+  float32 in -> pair_forces dtype: float32   (target float32)  -> PASS
+  float32 in -> pair_forces_loop dtype: float32   (target float32)  -> PASS
+  float32 in -> potential_energy dtype: float32   (target float32)  -> PASS
+  float32 in -> kinetic_energy dtype: float32   (target float32)  -> PASS
+  float32 in -> step_euler pos dtype: float32   (target float32)  -> PASS
+  float32 in -> step_verlet pos dtype: float32   (target float32)  -> PASS
+  float32 in -> run pos dtype: float32   (target float32)  -> PASS
+  float32 in -> run E dtype: float32   (target float32)  -> PASS
+
+=== 9. energy bookkeeping and the cutoff ===
+  U at the cutoff: 0.5*k*(rc-r0)^2 = 10.8000
+  pair count: start 8, end 33, min 8, max 35, steps where it changed 219
+  E(0) = 36.5653, E(end) = 303.9046, max |E-E0|/|E0| = 7.9138
+  K(0) = 3.3430, K(end) = 201.9190; U(0) = 33.2223, U(end) = 101.9856
+  largest single-step change of E: 32.4679; on steps with no pair change: 1.0492
+  shifted energy E - 10.8*npairs: start -49.8347, end -52.4954, max |dev| 9.2641 (relative 0.1859)
+  closest pair distance over the run: 0.0097 at t = 0.34 (barrier at r=0 is only 0.5*k*r0^2 = 4.8)
+  the biggest no-pair-change jump of E is at t = 7.75, where the closest pair is at r = 0.1143
+
+47 checks, 0 failed

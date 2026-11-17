@@ -1,0 +1,23 @@
+MemTotal 16.87 GB, MemAvailable at start of part B 15.78 GB, at end 16.01 GB (other members were running too)
+
+float64: peak ~ 65.01 * N^2 bytes, t_force ~ 8.004e-08 * N^2 s, t_potential ~ 3.482e-08 * N^2 s  (fit on N >= 2000)
+  peak reaches 5 GB budget (5.0 GB) at N ~ 8770
+  peak reaches MemAvailable now (16.0 GB) at N ~ 15691
+  peak reaches MemTotal (16.9 GB) at N ~ 16109
+  N=  1000: peak    0.07 GB, one force call    0.080 s, 1000-step tm.run (force + potential each step) ~      1.9 min
+  N=  2000: peak    0.26 GB, one force call    0.320 s, 1000-step tm.run (force + potential each step) ~      7.7 min
+  N=  5000: peak    1.63 GB, one force call    2.001 s, 1000-step tm.run (force + potential each step) ~     47.9 min
+  N= 10000: peak    6.50 GB, one force call    8.004 s, 1000-step tm.run (force + potential each step) ~    191.4 min
+  N= 20000: peak   26.00 GB, one force call   32.015 s, 1000-step tm.run (force + potential each step) ~    765.7 min
+
+float32: peak ~ 33.00 * N^2 bytes, t_force ~ 6.198e-08 * N^2 s, t_potential ~ 2.783e-08 * N^2 s  (fit on N >= 2000)
+  peak reaches 5 GB budget (5.0 GB) at N ~ 12309
+  peak reaches MemAvailable now (16.0 GB) at N ~ 22022
+  peak reaches MemTotal (16.9 GB) at N ~ 22608
+  N=  1000: peak    0.03 GB, one force call    0.062 s, 1000-step tm.run (force + potential each step) ~      1.5 min
+  N=  2000: peak    0.13 GB, one force call    0.248 s, 1000-step tm.run (force + potential each step) ~      6.0 min
+  N=  5000: peak    0.83 GB, one force call    1.549 s, 1000-step tm.run (force + potential each step) ~     37.4 min
+  N= 10000: peak    3.30 GB, one force call    6.198 s, 1000-step tm.run (force + potential each step) ~    149.7 min
+  N= 20000: peak   13.20 GB, one force call   24.791 s, 1000-step tm.run (force + potential each step) ~    598.7 min
+
+check: tm.run verlet N=2000, 30 steps: 0.464 s per step measured, force + potential from the table = 0.425 s

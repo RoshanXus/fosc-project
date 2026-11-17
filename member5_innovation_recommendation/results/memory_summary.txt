@@ -1,0 +1,6 @@
+tm.pair_forces peak ~ 65.0 bytes * N^2 (N >= 500)
+cell list peak     ~ 40.6 bytes * N   (N >= 10000)
+N =   5000: numpy predicted 1.63 GB, cell list predicted 0.203 MB
+N =   7000: numpy predicted 3.19 GB, cell list predicted 0.285 MB
+N =  10000: numpy predicted 6.5 GB, cell list predicted 0.406 MB
+N = 100000: numpy predicted 650 GB, cell list predicted 4.06 MB

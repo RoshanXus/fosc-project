@@ -1,0 +1,4 @@
+cpu: Intel(R) Xeon(R) Processor @ 2.30GHz, 4 cores (shared with other group members)
+python 3.13.18, numpy 2.5.3, gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+load average before timing: (1.677734375, 2.29736328125, 1.45849609375)
+load average after timing:  (1.93017578125, 2.201171875, 1.5078125)

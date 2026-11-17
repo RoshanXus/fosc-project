@@ -1,0 +1,5 @@
+run,xmin,xmax,ymin,ymax,coords_outside,hits_left,hits_right,hits_bottom,hits_top,hits_total
+verlet_f64,0.0,10.0,0.0,10.0,0,4,5,4,3,16
+verlet_loop_f64,0.0,10.0,0.0,10.0,0,4,5,4,3,16
+euler_f64,0.0,10.0,0.0,10.0,0,4,7,3,4,18
+verlet_f32,0.0,10.0,0.0,10.0,0,4,5,4,3,16

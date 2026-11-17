@@ -1,0 +1,29 @@
+model,dt,median_eps_5_seeds,max_eps_5_seeds,median_npairs_final
+hard cutoff + clamp (handout),0.05,1.533,2.434,26
+hard cutoff + clamp (handout),0.02,0.2431,0.6827,26
+hard cutoff + clamp (handout),0.01,0.1859,0.3239,29
+hard cutoff + clamp (handout),0.005,0.07156,0.1583,23
+hard cutoff + clamp (handout),0.002,0.02661,0.04352,17
+hard cutoff + clamp (handout),0.001,0.01142,0.03288,20
+hard cutoff + clamp (handout),0.0005,0.007287,0.009558,25
+hard cutoff + mirror,0.05,0.7177,0.7882,27
+hard cutoff + mirror,0.02,0.1973,0.4796,22
+hard cutoff + mirror,0.01,0.08499,0.2599,20
+hard cutoff + mirror,0.005,0.0758,0.1392,20
+hard cutoff + mirror,0.002,0.02851,0.03762,29
+hard cutoff + mirror,0.001,0.01115,0.01983,19
+hard cutoff + mirror,0.0005,0.00628,0.00921,26
+smooth cutoff + clamp,0.05,1.075,1.788,19
+smooth cutoff + clamp,0.02,0.1046,0.4655,16
+smooth cutoff + clamp,0.01,0.04225,0.08043,16
+smooth cutoff + clamp,0.005,0.0209,0.0433,24
+smooth cutoff + clamp,0.002,0.003742,0.01791,21
+smooth cutoff + clamp,0.001,0.002966,0.01276,21
+smooth cutoff + clamp,0.0005,0.0009623,0.00728,21
+smooth cutoff + mirror,0.05,1.295,1.901,22
+smooth cutoff + mirror,0.02,0.1193,0.1877,23
+smooth cutoff + mirror,0.01,0.0418,0.08909,18
+smooth cutoff + mirror,0.005,0.01404,0.02408,21
+smooth cutoff + mirror,0.002,0.004038,0.008808,22
+smooth cutoff + mirror,0.001,0.001953,0.003582,28
+smooth cutoff + mirror,0.0005,0.0005136,0.001374,18
