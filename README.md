@@ -11,12 +11,12 @@
 ## Sequence of videos
 
 1. Video-1 Member1.mp4 (problem, model, baseline simulator, verification)
-2. Video-2 Member2.mp4 (Python vs NumPy vs C timing, speedup, memory scaling)
-3. Video-3 Member3.mp4 (K, U, E_total, timestep study, float32 vs float64)
-4. Video-4 Member4.mp4 (animation, conservative vs dissipative dynamics, relaxation)
+2. Video-2 Member3.mp4 (K, U, E_total, timestep study, float32 vs float64)
+3. Video-3 Member4.mp4 (animation, conservative vs dissipative dynamics, relaxation)
+4. Video-4 Member2.mp4 (Python vs NumPy vs C timing, speedup, memory scaling)
 5. Video-5 Member5.mp4 (innovation: cell-linked list with Numba, final recommendation)
 
-Talking points for each video are in `memberN_*/video_notes.md`.
+The order follows the structure suggested in the course slides (model, energy, dissipation, efficiency, innovation, recommendation). Total length is about 19 to 20 minutes. The full script for each video (what to say and what to show, with timings) is in `memberN_*/video_script.md`.
 
 ## Roles and responsibilities
 
@@ -45,7 +45,7 @@ Integration of the final report and README was done together by all members.
 ## Files shared
 
 1. README (this file, `README.md` and `README.pdf`)
-2. Video files (Video-1 to Video-5, listed above)
+2. Video files (Video-1 to Video-5, listed above), with scripts in `memberN_*/video_script.md`
 3. Source codes, testing codes, visualization codes and produced movies, one folder per member. Each folder has its own `README.md` with the run order:
    - `member1_baseline_verification/` - `toymodel.py` (shared simulator), `verify.py`
    - `member2_forces_efficiency_memory/` - `pairforce.c`, timing and memory scripts
