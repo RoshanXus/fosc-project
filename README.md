@@ -16,7 +16,7 @@
 4. Video-4 Chandar.mp4 (Python vs NumPy vs C timing, speedup, memory scaling)
 5. Video-5 Rakesh.mp4 (innovation: cell-linked list with Numba, final recommendation)
 
-The order follows the structure suggested in the course slides (model, energy, dissipation, efficiency, innovation, recommendation). Total length is about 19 to 20 minutes. The full script for each video (what to say and what to show, with timings) is in `memberN_*/video_script.md`.
+The order follows the structure suggested in the course slides (model, energy, dissipation, efficiency, innovation, recommendation). Each video is about 2 minutes, about 10 minutes in total. The full script for each video (what to say and what to show, with timings) is in `memberN_*/video_script.md` and `video_script.pdf`.
 
 ## Roles and responsibilities
 
