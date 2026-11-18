@@ -1,4 +1,4 @@
-# Video-2 script: Member 3, energy, timestep and precision (about 4:00)
+# Video-2 script: Gowtham (Member 3), energy, timestep and precision (about 4:00)
 
 Open before recording: `report.pdf` from this folder, and these figures from `results/`: `KUE_panels.png`, `pairs_vs_energy_dt0.01.png`, `E_total_all_dt_verlet.png`, `control_eps_vs_dt_loglog.png`, `error_sources.png`, `precision_cost.png`, `precision_eps_pos.png`.
 
@@ -10,7 +10,7 @@ Lines marked (optional) can be cut if the whole video runs over 20 minutes.
 **Show:** `report.pdf`, title.
 
 **Say:**
-> "I'm [Name 3]. I studied energy conservation, how large the timestep can be, and float32 against float64."
+> "I'm Gowtham. I studied energy conservation, how large the timestep can be, and float32 against float64."
 
 ### 0:15 to 0:40 · K and U swap energy
 **Show:** `KUE_panels.png`, point at one row.
@@ -58,4 +58,4 @@ Lines marked (optional) can be cut if the whole video runs over 20 minutes.
 
 **Say:**
 > "The float32 and float64 trajectories do drift apart. The position difference grows to about 0.5, which means the particles end up in completely different places. But look at the other curves: two float64 runs whose starts differ by 10 to the minus 7, or even 10 to the minus 12, end up just as far apart. So this is chaos, not a float32 problem. Averages like the mean kinetic energy from float32 fall inside the spread of the float64 runs.
-> My conclusion: float32 is accurate enough for this problem, but at N equal to 12 it gives no speed benefit, so we keep float64 there. [Name 4] will now show the animation and what happens when we add friction."
+> My conclusion: float32 is accurate enough for this problem, but at N equal to 12 it gives no speed benefit, so we keep float64 there. Asad will now show the animation and what happens when we add friction."

@@ -1,5 +1,5 @@
 # Energy, Timestep Accuracy and Numerical Precision
-Member 3: time integration and energy (Task 3), float32 vs float64 (Task 5)
+Member 3 (Gowtham, MS26BTECH11026): time integration and energy (Task 3), float32 vs float64 (Task 5)
 
 ## 1. What I did
 

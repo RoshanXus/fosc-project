@@ -2,29 +2,29 @@
 
 ## Details of members
 
-1. Member 1 Name MSxxxxxxxx
-2. Member 2 Name MSxxxxxxxx
-3. Member 3 Name MSxxxxxxxx
-4. Member 4 Name MSxxxxxxxx
-5. Member 5 Name MSxxxxxxxx
+1. Roshan Raju MS26BTECH11013
+2. Chandar MS26BTECH11012
+3. Gowtham MS26BTECH11026
+4. Asad MS26BTECH11021
+5. Rakesh MS26BTECH11014
 
 ## Sequence of videos
 
-1. Video-1 Member1.mp4 (problem, model, baseline simulator, verification)
-2. Video-2 Member3.mp4 (K, U, E_total, timestep study, float32 vs float64)
-3. Video-3 Member4.mp4 (animation, conservative vs dissipative dynamics, relaxation)
-4. Video-4 Member2.mp4 (Python vs NumPy vs C timing, speedup, memory scaling)
-5. Video-5 Member5.mp4 (innovation: cell-linked list with Numba, final recommendation)
+1. Video-1 Roshan.mp4 (problem, model, baseline simulator, verification)
+2. Video-2 Gowtham.mp4 (K, U, E_total, timestep study, float32 vs float64)
+3. Video-3 Asad.mp4 (animation, conservative vs dissipative dynamics, relaxation)
+4. Video-4 Chandar.mp4 (Python vs NumPy vs C timing, speedup, memory scaling)
+5. Video-5 Rakesh.mp4 (innovation: cell-linked list with Numba, final recommendation)
 
 The order follows the structure suggested in the course slides (model, energy, dissipation, efficiency, innovation, recommendation). Total length is about 19 to 20 minutes. The full script for each video (what to say and what to show, with timings) is in `memberN_*/video_script.md`.
 
 ## Roles and responsibilities
 
-1. Member 1 - Model setup and verification: wrote the core simulator `toymodel.py` that everyone else imports (positions, velocities, wall reflection, pairwise distances, neighbour mask, loop and vectorized spring forces, Euler and Verlet steps, energies) and the Task 1 verification tests (47 numerical checks). Found the 10.8 energy jump at the cutoff. (Task 1)
-2. Member 2 - Pair forces and efficiency: wrote `pairforce.c` (standalone and ctypes versions, -O0 and -O2), timed Python loop / NumPy / C for N = 50 to 4000 with medians and speedups, found the bottleneck, and measured the memory of the (N, N, 2) array and of a full force call. (Tasks 6 and 7)
-3. Member 3 - Time integration and energy: timestep study for Euler and Verlet with K, U, E_total and the shifted energy, control runs to measure the integrator order, choice of dt, and the float32 vs float64 study. (Tasks 3 and 5)
-4. Member 4 - Animation and dissipation: trajectory animations (MP4 and GIF) used as a diagnostic, viscous drag with a damped Verlet step, energy balance check, steady-state criterion and relaxation time vs gamma. Found the energy gain from the wall clamp. (Tasks 2 and 4)
-5. Member 5 - Innovation and final recommendation: cell-linked neighbour list compiled with Numba, checked against the baseline forces and benchmarked up to N = 10^6, and the final engineering recommendation based on everyone's results. (Tasks 8 and 9)
+1. Roshan Raju (Member 1) - Model setup and verification: wrote the core simulator `toymodel.py` that everyone else imports (positions, velocities, wall reflection, pairwise distances, neighbour mask, loop and vectorized spring forces, Euler and Verlet steps, energies) and the Task 1 verification tests (47 numerical checks). Found the 10.8 energy jump at the cutoff. (Task 1)
+2. Chandar (Member 2) - Pair forces and efficiency: wrote `pairforce.c` (standalone and ctypes versions, -O0 and -O2), timed Python loop / NumPy / C for N = 50 to 4000 with medians and speedups, found the bottleneck, and measured the memory of the (N, N, 2) array and of a full force call. (Tasks 6 and 7)
+3. Gowtham (Member 3) - Time integration and energy: timestep study for Euler and Verlet with K, U, E_total and the shifted energy, control runs to measure the integrator order, choice of dt, and the float32 vs float64 study. (Tasks 3 and 5)
+4. Asad (Member 4) - Animation and dissipation: trajectory animations (MP4 and GIF) used as a diagnostic, viscous drag with a damped Verlet step, energy balance check, steady-state criterion and relaxation time vs gamma. Found the energy gain from the wall clamp. (Tasks 2 and 4)
+5. Rakesh (Member 5) - Innovation and final recommendation: cell-linked neighbour list compiled with Numba, checked against the baseline forces and benchmarked up to N = 10^6, and the final engineering recommendation based on everyone's results. (Tasks 8 and 9)
 
 Integration of the final report and README was done together by all members.
 

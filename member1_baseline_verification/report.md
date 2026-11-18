@@ -1,5 +1,5 @@
 # Baseline simulator and verification (Task 1)
-Member 1: model setup and verification
+Member 1 (Roshan Raju, MS26BTECH11013): model setup and verification
 
 ## What I did
 

@@ -1,5 +1,5 @@
 # Animation, diagnostics and dissipation in the 2D atomic toy model
-Member 4: animation and visualization (Task 2), dissipation and relaxation (Task 4)
+Member 4 (Asad, MS26BTECH11021): animation and visualization (Task 2), dissipation and relaxation (Task 4)
 
 ## 1. What I did
 

@@ -1,4 +1,4 @@
-# Video-3 script: Member 4, animation and dissipation (about 4:15)
+# Video-3 script: Asad (Member 4), animation and dissipation (about 4:15)
 
 Open before recording: `report.pdf` from this folder, and from `results/`: `animation_default.mp4`, `diagnostics_default.png`, `animation_dt0.1.mp4`, `diagnostics_dt.png`, `compare_gamma0_vs_gamma0.5.mp4`, `energy_balance.png`, `relaxation_time_vs_gamma.png`, `final_states.png`.
 
@@ -8,7 +8,7 @@ Lines marked (optional) can be cut if the whole video runs over 20 minutes.
 
 ### 0:00 to 0:10 · Intro
 **Say:**
-> "I'm [Name 4]. I made the animation, used it to look for problems, and added dissipation to the model."
+> "I'm Asad. I made the animation, used it to look for problems, and added dissipation to the model."
 
 ### 0:10 to 0:40 · The animation
 **Show:** play `animation_default.mp4` (about 20 seconds is enough).
@@ -27,7 +27,7 @@ Lines marked (optional) can be cut if the whole video runs over 20 minutes.
 **Show:** stay on `diagnostics_default.png`, or the "Why it clusters" paragraph in the report.
 
 **Say:**
-> "Why? As [Name 1] showed, the pair energy at the cutoff is 10.8, not zero. Written as a shifted potential, every pair inside the cutoff sits in a well 10.8 deep, but the barrier against overlapping is only 4.8. So particles fall into each other's wells, overlap, and the released energy heats them up. One interesting detail: two particles on their own just pass through each other. It takes a third particle to carry the energy away and form a cluster."
+> "Why? As Roshan Raju showed, the pair energy at the cutoff is 10.8, not zero. Written as a shifted potential, every pair inside the cutoff sits in a well 10.8 deep, but the barrier against overlapping is only 4.8. So particles fall into each other's wells, overlap, and the released energy heats them up. One interesting detail: two particles on their own just pass through each other. It takes a third particle to carry the energy away and form a cluster."
 
 ### 1:45 to 2:10 · A bad run that looks fine
 **Show:** play `animation_dt0.1.mp4` for about 10 seconds, then `diagnostics_dt.png`.
@@ -68,4 +68,4 @@ Lines marked (optional) can be cut if the whole video runs over 20 minutes.
 
 ### 4:05 to 4:15 · Wall issue and hand-over (optional first sentence)
 **Say:**
-> "One more thing we found: the handout's wall clamp adds energy in long runs, about 430 of the 684 gained over t equals 600, and a mirror reflection cuts the total gain to 46. Next, [Name 2] on how fast the code is."
+> "One more thing we found: the handout's wall clamp adds energy in long runs, about 430 of the 684 gained over t equals 600, and a mirror reflection cuts the total gain to 46. Next, Chandar on how fast the code is."

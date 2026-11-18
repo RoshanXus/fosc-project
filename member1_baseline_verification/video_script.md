@@ -1,8 +1,8 @@
-# Video-1 script: Member 1, problem, model and verification (about 3:45)
+# Video-1 script: Roshan Raju (Member 1), problem, model and verification (about 3:45)
 
 Open before recording: a title slide (project name and the five names), `report.pdf` from this folder, `toymodel.py`, `../member4_animation_dissipation/results/animation_default.mp4`, `results/positions_initial_final.png`.
 
-Replace [Name 1] ... [Name 5] with real names. Lines marked (optional) can be cut if the whole video runs over 20 minutes.
+Lines marked (optional) can be cut if the whole video runs over 20 minutes.
 
 ---
 
@@ -10,7 +10,7 @@ Replace [Name 1] ... [Name 5] with real names. Lines marked (optional) can be cu
 **Show:** title slide.
 
 **Say:**
-> "Hello, we are [Name 1], [Name 2], [Name 3], [Name 4] and [Name 5]. Our project is the atomic toy model from Fundamentals of Scientific Computing. We built a small simulator of particles that move around a box and pull on each other with springs. Then we tested it for three things: is it accurate, is it efficient, and can we improve it. I'm [Name 1]. I wrote the base simulator that everyone else used, and I checked that it is correct."
+> "Hello, we are Roshan Raju, Chandar, Gowtham, Asad and Rakesh. Our project is the atomic toy model from Fundamentals of Scientific Computing. We built a small simulator of particles that move around a box and pull on each other with springs. Then we tested it for three things: is it accurate, is it efficient, and can we improve it. I'm Roshan Raju. I wrote the base simulator that everyone else used, and I checked that it is correct."
 
 ### 0:30 to 1:30 · The model
 **Show:** `report.pdf`, sections "Model description and assumptions" and "Governing equations". Scroll slowly while talking.
@@ -26,7 +26,7 @@ Replace [Name 1] ... [Name 5] with real names. Lines marked (optional) can be cu
 
 **Say:**
 > "This is one run. The grey lines are pairs inside the cutoff.
-> Every step, the code does four things. First, it gets every pairwise displacement vector at once with NumPy broadcasting: pos with a new axis minus pos with a new axis gives an N by N by 2 array, with no Python loop. Second, it builds the neighbour mask, which is true where the distance is above zero and at most rc. Third, it computes the spring forces using that mask. Fourth, it updates velocities and positions, and applies the walls. [Name 4] will come back to this animation later and explain what it tells us."
+> Every step, the code does four things. First, it gets every pairwise displacement vector at once with NumPy broadcasting: pos with a new axis minus pos with a new axis gives an N by N by 2 array, with no Python loop. Second, it builds the neighbour mask, which is true where the distance is above zero and at most rc. Third, it computes the spring forces using that mask. Fourth, it updates velocities and positions, and applies the walls. Asad will come back to this animation later and explain what it tells us."
 
 ### 2:10 to 3:15 · Verification with numbers
 **Show:** `report.pdf`, section "Results". Show each table while you talk about it: distance matrix table, 4-particle table, forces table, walls table and the full-run box table.
@@ -48,4 +48,4 @@ Replace [Name 1] ... [Name 5] with real names. Lines marked (optional) can be cu
 **Show:** `results/positions_initial_final.png`.
 
 **Say:**
-> "Here are the start and the end of the run: 8 bonds at the start, 33 at the end, with most particles in one cluster. While running this I noticed something odd: the total energy went from 36.6 to 303.9. The reason is in the model, not the code. At r equal to rc the spring energy is a half times 15 times 1.2 squared, which is 10.8, not zero. So every time a pair crosses the cutoff, the energy jumps by 10.8. [Name 3] will show what this means for choosing the timestep."
+> "Here are the start and the end of the run: 8 bonds at the start, 33 at the end, with most particles in one cluster. While running this I noticed something odd: the total energy went from 36.6 to 303.9. The reason is in the model, not the code. At r equal to rc the spring energy is a half times 15 times 1.2 squared, which is 10.8, not zero. So every time a pair crosses the cutoff, the energy jumps by 10.8. Gowtham will show what this means for choosing the timestep."

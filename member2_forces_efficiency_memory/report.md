@@ -1,5 +1,5 @@
 # Pair forces: computational efficiency, memory and scalability
-Member 2: pair forces, timing and speedup (Task 6), memory and scalability (Task 7)
+Member 2 (Chandar, MS26BTECH11012): pair forces, timing and speedup (Task 6), memory and scalability (Task 7)
 
 ## 1. What I did
 

@@ -1,4 +1,4 @@
-# Video-5 script: Member 5, innovation and final recommendation (about 4:30)
+# Video-5 script: Rakesh (Member 5), innovation and final recommendation (about 4:30)
 
 Open before recording: `../member1_baseline_verification/toymodel.py` (the `pair_forces` function), a simple grid sketch (drawn on paper or one slide), `report.pdf` and `recommendation.pdf` from this folder, and from `results/`: `run12_compare.png`, `force_timing_loglog.png`, `dt_study_models.png`.
 
@@ -8,7 +8,7 @@ Lines marked (optional) can be cut if the whole video runs over 20 minutes.
 
 ### 0:00 to 0:10 · Intro
 **Say:**
-> "I'm [Name 5]. I built our innovation, a cell-linked neighbour list, and put together our final recommendation."
+> "I'm Rakesh. I built our innovation, a cell-linked neighbour list, and put together our final recommendation."
 
 ### 0:10 to 0:35 · The problem with the baseline
 **Show:** `toymodel.py`, the line that builds `d` in `pairwise_distances`.

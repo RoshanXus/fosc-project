@@ -1,5 +1,5 @@
 # Innovation: cell-linked neighbour list with Numba JIT
-Member 5: innovation (Task 8) and final recommendation (Task 9)
+Member 5 (Rakesh, MS26BTECH11014): innovation (Task 8) and final recommendation (Task 9)
 
 ## What I did
 

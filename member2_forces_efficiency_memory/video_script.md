@@ -1,4 +1,4 @@
-# Video-4 script: Member 2, efficiency and memory (about 3:25)
+# Video-4 script: Chandar (Member 2), efficiency and memory (about 3:25)
 
 Open before recording: `pairforce.c`, `report.pdf` from this folder, and from `results/`: `time_vs_N.png`, `speedup.png`, `bottleneck_breakdown.png`, `memory_scaling.png`.
 
@@ -6,7 +6,7 @@ Open before recording: `pairforce.c`, `report.pdf` from this folder, and from `r
 
 ### 0:00 to 0:10 · Intro
 **Say:**
-> "I'm [Name 2]. I measured how fast the force calculation is and how much memory it needs."
+> "I'm Chandar. I measured how fast the force calculation is and how much memory it needs."
 
 ### 0:10 to 0:40 · Three versions of the same force
 **Show:** `pairforce.c` for about 5 seconds, then the "Same forces?" table in section 3 of `report.pdf`.
@@ -44,4 +44,4 @@ Open before recording: `pairforce.c`, `report.pdf` from this folder, and from `r
 
 ### 3:10 to 3:25 · Hand-over
 **Say:**
-> "So a method that's fast for small N isn't necessarily one that scales. C fixes the memory problem, but it is still N squared. [Name 5] will show how we got rid of the N squared."
+> "So a method that's fast for small N isn't necessarily one that scales. C fixes the memory problem, but it is still N squared. Rakesh will show how we got rid of the N squared."
