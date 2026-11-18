@@ -1,15 +1,15 @@
 # Video-5 script: Rakesh (Member 5), innovation and final recommendation (about 2:00)
 
-Open before recording: a simple grid sketch (paper or one slide), `report.pdf` and `recommendation.pdf` from this folder, and `results/force_timing_loglog.png`.
+Open before recording: `results/cell_list_sketch.png`, `report.pdf` and `recommendation.pdf` from this folder, and `results/force_timing_loglog.png`.
 
 ---
 
 ### 0:00 to 0:30 · The idea
-**Show:** the grid sketch.
+**Show:** `results/cell_list_sketch.png`.
 
 **Say:**
 
-> "I'm Rakesh. The baseline checks every pair, but each particle has only about 1.5 neighbours. So we cut the box into cells at least rc wide. Each particle only checks its own cell and the 8 around it, so the cost grows like N instead of N squared. We compiled it with Numba."
+> "I'm Rakesh. The baseline checks every pair, but each particle has only about 1.5 neighbours. So we cut the box into cells at least rc wide. Each particle only checks its own cell and the 8 around it. Here, particle 0 checks 7 of the 11 others instead of all of them, and 3 are inside the cutoff. With more particles, the number checked stays the same, so the cost grows like N instead of N squared. We compiled it with Numba."
 
 ### 0:30 to 1:05 · Correct and fast
 **Show:** `force_timing_loglog.png`, then the timing table in `report.pdf`.
