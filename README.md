@@ -32,15 +32,7 @@ Integration of the final report and README was done together by all members.
 
 1. Which AI tools have been used and for what purpose
 
-   Claude (Anthropic) - for code development and debugging, and for help with drafting and proofreading the report text. Places where we used it:
-   - Member 1: checking the broadcasting expression for the (N, N, 2) displacement array and why float32 arrays were being turned into float64 under NumPy 2.
-   - Member 2: the ctypes wrapper and compile commands for `pairforce.c`, and understanding why `ru_maxrss` showed no memory growth in a child process.
-   - Member 3: setting up the log-log fit for the error vs dt plots and debugging the shifted-energy bookkeeping.
-   - Member 4: the matplotlib FuncAnimation and ffmpeg writer setup, and checking the algebra of the implicit drag half-kick.
-   - Member 5: Numba syntax for the cell-list loops and finding why the compiled functions were slow when called with default arguments.
-   - All members: proofreading and shortening the report sections.
-
-   All numbers, tables and figures in the reports come from our own runs of the scripts in this folder.
+   Claude (Anthropic) - for code development and debugging, and for help with drafting and proofreading the report text. The prompts and sessions are in `ai_usage/`.
 
 ## Files shared
 
