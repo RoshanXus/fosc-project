@@ -1,5 +1,4 @@
-# Task 3: K, U, E_total for several dt, Euler (handout step_once) vs Verlet (step_smooth).
-# Same initial configuration (seed 0), total time t = 10 for every dt.
+# Task 3: K, U, E vs dt for Euler and Verlet, same seed-0 start, t = 10 for every dt
 import time
 import matplotlib
 matplotlib.use("Agg")

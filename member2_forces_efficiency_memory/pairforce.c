@@ -1,9 +1,4 @@
-/* pairforce.c - double-loop spring force, same algorithm as pair_forces_loop in toymodel.py
- *
- * Standalone:     gcc -O2 pairforce.c -o pairforce_O2 -lm      then  ./pairforce_O2 1000
- * Shared library: gcc -O2 -shared -fPIC -DNO_MAIN pairforce.c -o libpairforce_O2.so -lm
- * (compile_c.py builds both, at -O0 and -O2)
- */
+/* Same double loop as toymodel.pair_forces_loop; compile_c.py builds it standalone and as a -DNO_MAIN ctypes library */
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -51,7 +46,7 @@ static int cmp(const void *a, const void *b)
 
 int main(int argc, char **argv)
 {
-    int n = 1000;                 /* N can be given on the command line */
+    int n = 1000;
     if (argc > 1)
         n = atoi(argv[1]);
     double k = 15.0, r0 = 0.8, rc = 2.0;

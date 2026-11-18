@@ -1,5 +1,6 @@
-# dissipation.py - Task 4: viscous drag F = -gamma v, energy balance and relaxation criterion
+# Task 4: viscous drag F = -gamma v, energy balance and relaxation criterion
 import sys, os
+os.chdir(os.path.dirname(os.path.abspath(__file__)))  # results/ is relative to this folder
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "member1_baseline_verification"))
 import numpy as np
 import matplotlib
@@ -33,8 +34,7 @@ def first_time_always(ok, t):
 
 
 def softest_mode(pos, h=1e-6):
-    # Hessian of the potential by central differences of the force, H = -dF/dx (mass = 1).
-    # returns omega of the softest vibration (zero modes: free particles, translation, rotation skipped)
+    # softest nonzero vibration omega from a finite-difference Hessian H = -dF/dx (mass 1)
     n = pos.size
     H = np.zeros((n, n))
     for a in range(n):
@@ -78,11 +78,8 @@ for g in GAMMAS:
                                       "wall contact (none of the above)", "other steps"]):
                 f.write(f"{name},{(cls == c).sum()},{mis[cls == c].sum():.5g},{np.abs(mis[cls == c]).sum():.5g}\n")
 
-    # criterion
     E = o["E"]
-    # window labelled by its START: dE[i] = |E(t_i + DeltaT) - E(t_i)| / |E(0)|, so t_relax is not pushed
-    # back by DeltaT. The last DeltaT of the run cannot be tested this way (set to 0 there, the speed
-    # condition is still checked up to the end).
+    # window labelled by its start so t_relax is not pushed back by DeltaT; the last DeltaT stays 0
     dE = np.zeros(len(E))
     dE[:-lag] = np.abs(E[lag:] - E[:-lag]) / abs(E[0])
     ok_v = o["vmean"] < V_TOL
@@ -97,19 +94,18 @@ for g in GAMMAS:
     o["t_relax"] = t_r
     chg = np.nonzero(changed)[0]
     t_last = t[chg[-1] + 1] if len(chg) else 0.0
-    # fit ln K(t) = a - rate * t between the last change of the pair set and K = 1e-14
-    # (K is tiny below that and round-off starts to matter)
-    sel = (t >= t_last) & (o["K"] > 1e-14)
-    sel &= t <= (t[sel][-1] if sel.any() else 0)
+    # fit ln K = a - rate t from the last pair change down to K = 1e-14, where round-off takes over
+    after = t >= t_last
+    low = after & (o["K"] <= 1e-14)
+    sel = after & (t < (t[low][0] if low.any() else np.inf))
     if g > 0 and sel.sum() > 100:
         rate = -np.polyfit(t[sel], np.log(o["K"][sel]), 1)[0]
         i0 = np.searchsorted(t, t_last)
-        # simple estimate: K ~ exp(-gamma t) so mean speed ~ exp(-gamma t / 2)
+        # K ~ exp(-gamma t), so mean speed ~ exp(-gamma t / 2)
         t_pred = t_last + 2.0 / g * np.log(o["vmean"][i0] / V_TOL)
     else:
         rate, t_pred = np.nan, np.nan
-    # damped oscillator: the softest mode decays as exp(-lambda t), K as exp(-2 lambda t), with
-    # 2 lambda = gamma (under-damped, gamma < 2 omega) or gamma - sqrt(gamma^2 - 4 omega^2) (over-damped)
+    # K decay rate of the damped softest mode (under- or over-damped)
     w_min, w2_lowest = softest_mode(o["pos_final"]) if g > 0 else (np.nan, np.nan)
     rate_mode = g if g < 2 * w_min else g - np.sqrt(g * g - 4 * w_min ** 2)
     if g > 0:
@@ -160,8 +156,7 @@ with open("results/energy_balance_dt.csv", "w") as f:
                 f"{sabs:.5g}\n")
 print(open("results/energy_balance_dt.csv").read())
 
-# ---- figures ----
-# K, U, E per gamma
+# ---- figures: K, U, E per gamma ----
 fig, axs = plt.subplots(3, 3, figsize=(13, 10))
 for ax, g in zip(axs.flat, GAMMAS):
     o = runs[g]

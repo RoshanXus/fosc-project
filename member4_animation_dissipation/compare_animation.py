@@ -1,5 +1,6 @@
-# compare_animation.py - side-by-side animation: conservative (gamma = 0) vs dissipative (gamma = 0.5)
+# Side-by-side animation: conservative (gamma = 0) vs dissipative (gamma = 0.5)
 import sys, os
+os.chdir(os.path.dirname(os.path.abspath(__file__)))  # results/ is relative to this folder
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "member1_baseline_verification"))
 import numpy as np
 import matplotlib

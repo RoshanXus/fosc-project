@@ -1,11 +1,4 @@
-# Task 3: where does the shifted-energy error come from in the default run?
-# Every step's change of E_shift is put in one class (checked in this order):
-#   1. the set of interacting pairs changed (a pair crossed rc, force jumps 18 -> 0)
-#   2. a particle touched a wall (walls_reflect clamps it to x = 0 or L)
-#   3. a very close pass, r_min < 0.1 (the force direction flips quickly near r = 0)
-#   4. none of these (smooth step)
-# The wall clamp is also measured directly: U_shift at the clamped position minus U_shift at the
-# mirror-image position (where an exact reflection would have put the particle).
+# Task 3: split the E_shift error by step type (rc crossing, wall, close pass, smooth)
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt

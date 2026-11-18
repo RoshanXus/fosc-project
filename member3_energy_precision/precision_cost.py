@@ -1,5 +1,4 @@
-# Task 5, cost part: memory and execution time of float32 vs float64.
-# Timings are medians of repeated runs (the machine is shared with other group members).
+# Task 5 cost: memory and time of float32 vs float64 (medians, the machine is shared)
 import time
 import tracemalloc
 import matplotlib

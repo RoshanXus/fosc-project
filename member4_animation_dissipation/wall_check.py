@@ -1,6 +1,6 @@
-# wall_check.py - how much of the long-run energy drift at gamma = 0 comes from the wall handling?
-# compares toymodel.walls_reflect (clamp to the wall, as in the handout) with a mirror reflection
+# How much of the gamma = 0 energy drift comes from the walls: handout clamp vs mirror reflection
 import sys, os
+os.chdir(os.path.dirname(os.path.abspath(__file__)))  # results/ is relative to this folder
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "member1_baseline_verification"))
 import numpy as np
 import toymodel as tm
@@ -21,9 +21,7 @@ with open("results/wall_handling_check.csv", "w") as f:
                     f"{E[-1]:.5g},{np.abs(E - E[0]).max():.5g},{ch.sum()},{np.diff(E)[ch].sum():.5g}\n")
 print(open("results/wall_handling_check.csv").read())
 
-# controlled test: 200 random bonded pairs (r between 0.5 and 1.9) thrown at the left wall,
-# speed 2-10, dt = 0.01, 0.5 time units (one wall hit each). Free flight + one spring, so the
-# only source of energy error besides normal Verlet error is the wall.
+# 200 bonded pairs thrown at the left wall once each, so the wall is the only extra energy error
 rng = np.random.default_rng(1)
 res = {"clamp (toymodel)": [], "mirror": []}
 for trial in range(200):

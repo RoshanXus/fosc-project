@@ -1,9 +1,4 @@
-# Task 3, control runs: measure the integrator error alone.
-# Control A: a compact cluster where all 66 pairs stay inside rc = 2 for the whole run and no
-#            particle touches a wall -> forces are smooth, E should be conserved up to integrator error.
-# Control B: the same cluster started next to the left wall with an extra vx = -1, so it bounces
-#            off the wall -> shows what the wall clamp in walls_reflect does to the energy.
-# Normal model parameters (k=15, r0=0.8, rc=2, L=10, m=1); only the starting positions differ.
+# Task 3 controls: a cluster that never crosses rc (A: integrator error only, B: plus a wall hit)
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt

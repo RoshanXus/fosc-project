@@ -1,9 +1,4 @@
-# recommend_tests.py - extra measurements for the Task 9 recommendation
-# 1. checks of smoothcut.py (hard version = handout forces, smooth force = -grad U)
-# 2. shifted-energy drift vs dt for 4 models: {hard, smooth cutoff} x {clamp, mirror walls},
-#    N = 12, t = 10, Verlet, seeds 0-4 (same target as Member 3: drift < 1% of |E_shift(0)|)
-# 3. the chosen setting at large N (fixed density) with the cell list
-# 4. float32 vs float64 and smooth vs hard cost of the cell-list force
+# Task 9: checks of smoothcut.py, E_shift drift vs dt for {hard, smooth} x {clamp, mirror}, large-N run and cost
 import sys, os, time
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "member1_baseline_verification"))
 import toymodel as tm
@@ -86,7 +81,6 @@ for name in models:
     for target in [0.01, 0.05]:
         ok = [r[1] for r in s if r[3] < target]
         say("%s: largest dt with worst-seed drift < %g%%: %s" % (name, target * 100, max(ok) if ok else "none"))
-    # slope of the worst-seed drift on dt <= 0.01
     d = np.array([r[1] for r in s if r[1] <= 0.01])
     e = np.array([r[3] for r in s if r[1] <= 0.01])
     say("%s: log-log slope of worst-seed drift for dt <= 0.01: %.2f" % (name, np.polyfit(np.log(d), np.log(e), 1)[0]))

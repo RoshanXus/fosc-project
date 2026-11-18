@@ -1,5 +1,4 @@
-# damped.py - helpers for member 4: velocity Verlet with linear drag, pair bookkeeping,
-# cluster finding. Reuses the forces and energies from member 1's toymodel.py.
+# Member 4 helpers: velocity Verlet with linear drag, pair bookkeeping and cluster finding on top of toymodel.py
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "member1_baseline_verification"))
 import numpy as np
@@ -9,12 +8,7 @@ U_RC = 0.5 * tm.K * (tm.RC - tm.R0) ** 2   # pair energy at the cutoff = 10.8
 
 
 def step_damped(pos, vel, mass, dt, L, gamma, F_prev=None, walls=tm.walls_reflect):
-    # velocity Verlet with F_total = F_spring - gamma*v.
-    # first half kick: drag evaluated with the old velocity (explicit).
-    # second half kick: drag evaluated with the NEW velocity (implicit). Because drag is
-    # linear in v this is just a division, so no iteration is needed. Together the two
-    # half kicks treat the drag with the trapezoidal rule, and for gamma = 0 the step is
-    # exactly tm.step_verlet.
+    # drag explicit in the first half kick, implicit in the second (trapezoidal); gamma = 0 gives tm.step_verlet
     m = np.asarray(mass, dtype=pos.dtype)[:, None]
     if F_prev is None:
         F_prev = tm.pair_forces(pos)
@@ -28,8 +22,7 @@ def step_damped(pos, vel, mass, dt, L, gamma, F_prev=None, walls=tm.walls_reflec
 
 
 def walls_mirror(pos, vel, L):
-    # alternative wall: a particle that went a distance delta past the wall is put back
-    # delta inside the box (mirror image) instead of exactly on the wall
+    # alternative to the clamp: a particle delta past the wall goes back delta inside
     for d in range(2):
         lo = pos[:, d] < 0
         pos[lo, d] = -pos[lo, d]
@@ -42,7 +35,7 @@ def walls_mirror(pos, vel, L):
 
 def pair_info(pos, rc=tm.RC):
     # number of pairs inside rc and the shifted potential (continuous at rc)
-    d, dist, nb = tm.pairwise_distances(pos, rc)
+    _, dist, nb = tm.pairwise_distances(pos, rc)
     up = np.triu(nb, 1)
     r = dist[up]
     U = 0.5 * tm.K * np.sum((r - tm.R0) ** 2)
@@ -74,8 +67,7 @@ def clusters(pos, rc=tm.RC):
 
 
 def simulate(pos, vel, mass, dt, nsteps, L, gamma=0.0, pos_every=1, walls=tm.walls_reflect):
-    # runs the damped stepper and records per-step K, U, shifted U, pair count,
-    # sum |v|^2, mean speed, rmin, and positions every pos_every steps
+    # per-step diagnostics every step, positions only every pos_every steps
     pos = pos.copy()
     vel = vel.copy()
     out = {k: np.zeros(nsteps + 1) for k in ["t", "K", "U", "Ush", "v2", "vmean", "vmax", "rmin"]}

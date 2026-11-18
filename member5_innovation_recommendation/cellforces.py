@@ -1,16 +1,4 @@
-# cellforces.py - faster pair forces for the toy model (Task 8 innovation)
-#
-# pair_forces_allpairs : same O(N^2) pair loop as the handout, but compiled with Numba
-# pair_forces_cell     : cell-linked list, each particle only looks at its own cell and
-#                        the 8 neighbouring cells, so the cost is O(N) at fixed density
-# potential_energy_cell: U with the same cell list (tm.potential_energy is O(N^2) too)
-#
-# Same physics as toymodel.pair_forces: F = -k (r - r0) r_hat for 0 < r <= rc.
-# The box has hard walls (no periodic images), so cells at the edge just have fewer
-# neighbour cells.
-# The @njit functions take every argument explicitly on purpose: with default arguments
-# Numba's dispatcher added ~27 us to every call (see dispatch_overhead.py), which is
-# more than the whole force calculation for N = 12.
+# Task 8: Numba all-pairs and cell-list forces; no default args, they add ~27 us per call
 import numpy as np
 from numba import njit
 
@@ -39,8 +27,7 @@ def pair_forces_allpairs(pos, k, r0, rc):
 def cell_of(x, y, side, ncell):
     cx = int(x / side)
     cy = int(y / side)
-    # the wall clamp puts particles exactly on x = L or y = L, which would give
-    # cx = ncell (one past the last cell), so clamp the index into the grid
+    # the wall clamp puts particles exactly on x = L, which would give cx = ncell
     cx = min(max(cx, 0), ncell - 1)
     cy = min(max(cy, 0), ncell - 1)
     return cx, cy
@@ -48,8 +35,7 @@ def cell_of(x, y, side, ncell):
 
 @njit
 def build_cells(pos, L, rc):
-    # ncell x ncell grid, cell side = L / ncell >= rc, so every partner within rc
-    # is in the same cell or one of the 8 cells around it
+    # cell side >= rc, so every partner is in the same cell or one of the 8 around it
     ncell = max(1, int(L / rc))
     side = L / ncell
     head = -np.ones(ncell * ncell, dtype=np.int64)   # first particle in each cell
@@ -74,7 +60,7 @@ def pair_forces_cell(pos, L, k, r0, rc):
             for nx in range(max(cx - 1, 0), min(cx + 2, ncell)):
                 j = head[ny * ncell + nx]
                 while j != -1:
-                    if j > i:      # each pair once, Newton's third law gives the other half
+                    if j > i:      # each pair once (Newton's third law)
                         dx = pos[i, 0] - pos[j, 0]
                         dy = pos[i, 1] - pos[j, 1]
                         r = np.sqrt(dx * dx + dy * dy)

@@ -1,5 +1,4 @@
-# Builds pairforce.c at -O0 and -O2 (standalone program + shared library for ctypes)
-# and runs the standalone programs for each N. Output: results/c_standalone.csv
+# Task 6: build pairforce.c at -O0/-O2 (program + ctypes library) and time the programs
 import os
 import subprocess
 

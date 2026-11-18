@@ -1,4 +1,4 @@
-# summarize.py - derived numbers used in the report (reads the csv files, run the benchmarks first)
+# Derived numbers for the report from the benchmark csv files (run the benchmarks first)
 import os, re
 import numpy as np
 

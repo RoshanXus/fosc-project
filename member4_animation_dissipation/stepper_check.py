@@ -1,7 +1,6 @@
-# stepper_check.py - checks the damped velocity Verlet step against the exact damped oscillator
-# two particles, r(0) = 1.2, at rest, gamma = 0.5: the separation stays inside rc (no cutoff jump),
-# relative motion x = r - r0 obeys x'' = -2k x - gamma x'  (reduced mass 1/2, m = 1)
+# Damped Verlet step vs the exact solution of x'' = -2k x - gamma x' for one pair (x = r - r0)
 import sys, os
+os.chdir(os.path.dirname(os.path.abspath(__file__)))  # results/ is relative to this folder
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "member1_baseline_verification"))
 import numpy as np
 import toymodel as tm

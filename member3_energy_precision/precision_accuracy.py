@@ -1,9 +1,4 @@
-# Task 5, accuracy part: float32 vs float64 (Verlet).
-# Same seed for both; the float32 start is the float64 start rounded to float32.
-# To see if trajectory differences are a float32 problem or just sensitivity of the dynamics,
-# we also run float64 from (a) the rounded start and (b) starts with random 1e-7 relative kicks.
-# Two settings: the handout dt = 0.01 and a more accurate dt = 0.001, both run to t = 40
-# (frames saved every 0.01 time units).
+# Task 5 accuracy: float32 vs float64, with kicked float64 runs to separate round-off from chaos
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt

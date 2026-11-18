@@ -1,6 +1,4 @@
-# dispatch_overhead.py - why the first benchmark gave ~30 us per call even for N = 12
-# Same compiled loop, once with default arguments left out by the caller, once with all
-# arguments passed explicitly.
+# Why N = 12 took ~30 us per call: the same Numba loop called with default args vs all args explicit
 import sys, os, timeit
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "member1_baseline_verification"))
 import toymodel as tm

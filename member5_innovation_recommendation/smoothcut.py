@@ -1,10 +1,4 @@
-# smoothcut.py - cell-list force/energy with an optional smooth cutoff (for the Task 9 tests)
-#
-# Shifted pair potential  phi(r) = 0.5 k (r - r0)^2 - 0.5 k (rc - r0)^2   (0 at r = rc)
-# hard   : U = phi(r) for r <= rc, force -k (r - r0) up to rc, then jumps to 0 (handout forces)
-# smooth : U = phi(r) S(r), S = 1 for r <= rs, S goes 1 -> 0 between rs and rc with the quintic
-#          1 - 10x^3 + 15x^4 - 6x^5 (x = (r - rs)/(rc - rs)), so U and F are both 0 at rc.
-#          For r <= rs the force is exactly the handout force.
+# Task 9: cell-list shifted potential, hard or with a quintic switch on [rs, rc] so U and F vanish at rc
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "member1_baseline_verification"))
 import toymodel as tm
@@ -70,8 +64,7 @@ def walls_mirror(pos, vel, L):
 
 
 def run_verlet(pos, vel, dt, nsteps, L, smooth, mirror, k=15.0, r0=0.8, rc=2.0, rs=1.5):
-    # velocity Verlet (mass 1), same order of operations as tm.step_verlet
-    # returns t, E_shift(t) (K + shifted/smooth U), npairs(t), final pos
+    # mass 1, same order of operations as tm.step_verlet
     pos = pos.copy()
     vel = vel.copy()
     E = np.zeros(nsteps + 1)

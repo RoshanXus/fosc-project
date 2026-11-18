@@ -1,11 +1,9 @@
-# toymodel.py - core of the 2D atomic toy model (follows the FSC handout)
-# Particles in an L x L box, spring force between pairs closer than rc,
-# hard walls that reflect the velocity.
+# Core of the FSC 2D atomic toy model: springs between pairs within rc, hard reflecting walls
 import numpy as np
 
-N = 12          # number of particles
-L = 10.0        # box side length
-DT = 0.01       # time step
+N = 12
+L = 10.0
+DT = 0.01
 NSTEPS = 1000   # number of steps (T in the handout)
 K = 15.0        # spring stiffness k
 R0 = 0.8        # preferred spacing r0
@@ -14,7 +12,7 @@ RC = 2.0        # neighbour cutoff rc
 
 def init_system(N=12, L=10.0, seed=0, dtype=np.float64):
     np.random.seed(seed)
-    pos = (np.random.rand(N, 2) * L).astype(dtype)          # uniform in the box
+    pos = (np.random.rand(N, 2) * L).astype(dtype)
     vel = np.random.uniform(-1.0, 1.0, (N, 2)).astype(dtype)
     mass = np.ones(N, dtype=dtype)
     return pos, vel, mass

@@ -1,6 +1,4 @@
-# benchmark_simulation.py - time a whole simulation, which is what a user actually runs
-# (a) 200 velocity-Verlet steps (tm.step_verlet) at fixed density, numpy vs numba forces
-# (b) the handout run itself: N = 12, 1000 steps through tm.run (with energy diagnostics)
+# Task 8: time whole simulations (200 Verlet steps vs N, and the N = 12 handout run) with NumPy vs Numba forces
 import sys, os, time
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "member1_baseline_verification"))
 import toymodel as tm
@@ -51,7 +49,7 @@ for N, do_np, do_all in plan:
         t_np, pos_np = median_run(N, L, tm.pair_forces)
         diff = np.max(np.abs(pos_np - pos_cell))
     if do_all:
-        t_all, pos_all = median_run(N, L, cf.make_allpairs_force())
+        t_all, _ = median_run(N, L, cf.make_allpairs_force())
     rows.append([N, L, t_np, t_all, t_cell, t_np / t_cell, t_all / t_cell, NSTEPS / t_cell, diff])
     print("N=%6d  numpy %.4f s  all-pairs %.4f s  cell %.4f s  speedup %.1f  max|pos diff| %.2e" % (
         N, t_np, t_all, t_cell, t_np / t_cell, diff))

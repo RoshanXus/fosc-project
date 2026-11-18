@@ -1,4 +1,4 @@
-# check_correctness.py - does the cell list give the same forces / trajectory as toymodel?
+# Task 8: does the cell list give the same forces and trajectory as toymodel?
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "member1_baseline_verification"))
 import toymodel as tm
@@ -48,8 +48,7 @@ p[43] = [0.0, L]
 p[44] = [L - 1.0, L]       # close partner of the corner particle
 cases.append(("walls N=200", p, L, tm.RC))
 
-# square lattice with spacing exactly rc = cell side: lots of pairs at r = rc exactly,
-# sitting on cell boundaries, plus x = L and y = L rows, plus one duplicated particle (r = 0)
+# lattice with spacing rc = cell side, so pairs sit at exactly rc on cell edges; plus a duplicate (r = 0)
 g = np.arange(0.0, 10.0 + 1e-9, 2.0)
 X, Y = np.meshgrid(g, g)
 p = np.column_stack([X.ravel(), Y.ravel()])

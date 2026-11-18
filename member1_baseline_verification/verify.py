@@ -1,6 +1,6 @@
-# verify.py - Task 1 verification checks for toymodel.py
-# Prints everything and saves it to results/verification_summary.txt plus a few csv files.
+# Task 1: verification checks for toymodel.py, written to results/
 import os
+os.chdir(os.path.dirname(os.path.abspath(__file__)))  # results/ is relative to this folder
 import ctypes
 import numpy as np
 import matplotlib
@@ -64,8 +64,7 @@ p4 = np.array([[1.0, 1.0],    # A
                [3.0, 1.0],    # B
                [1.0, 3.5],    # C
                [4.0, 3.0]])   # D
-# by hand: AB = 2 (exactly rc), AC = 2.5, AD = sqrt(13) = 3.606, BC = sqrt(10.25) = 3.202,
-#          BD = sqrt(5) = 2.236, CD = sqrt(9.25) = 3.041
+# by hand: AB = 2 (exactly rc), AC = 2.5, BD = 2.236, CD = 3.041, BC = 3.202, AD = 3.606
 hand = {2.0: [1, 1, 0, 0],   # only AB (AB = 2.0 is included because the test is dist <= rc)
         3.0: [2, 2, 1, 1]}   # AB, AC, BD  (CD = 3.041 is just outside)
 d4, dist4, nb4 = tm.pairwise_distances(p4, 2.0)
@@ -95,7 +94,7 @@ np.random.seed(1)
 pos_test = np.random.rand(200, 2) * 50      # separate array, does not touch pos
 rows200 = []
 for rc in (2.0, 3.0, 5.0):
-    d2, dist2, nb2 = tm.pairwise_distances(pos_test, rc)
+    _, dist2, nb2 = tm.pairwise_distances(pos_test, rc)
     avg = nb2.sum(axis=1).mean()
     est = 199 / 50.0 ** 2 * np.pi * rc ** 2       # density of the other particles times circle area
     Fv = tm.pair_forces(pos_test, rc=rc)
@@ -200,7 +199,7 @@ for name, fr, hits in [("verlet_f64", frames_vec, hits_vec), ("verlet_loop_f64",
     box_rows.append(f"{name},{xmin},{xmax},{ymin},{ymax},{outside},{hits[0]},{hits[1]},{hits[2]},{hits[3]},{hits.sum()}")
     check(f"{name}: x in [{xmin:.4g}, {xmax:.4g}], y in [{ymin:.4g}, {ymax:.4g}], coords outside box",
           outside, 0, outside == 0)
-    say(f"     wall hits: " + ", ".join(f"{w}: {h}" for w, h in zip(walls, hits)) + f", total {hits.sum()}")
+    say("     wall hits: " + ", ".join(f"{w}: {h}" for w, h in zip(walls, hits)) + f", total {hits.sum()}")
 with open("results/box_check.csv", "w") as f:
     f.write("run,xmin,xmax,ymin,ymax,coords_outside,hits_left,hits_right,hits_bottom,hits_top,hits_total\n")
     f.write("\n".join(box_rows) + "\n")

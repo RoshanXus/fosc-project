@@ -1,5 +1,4 @@
-# Task 7: memory of the (N, N, 2) displacement array and the real peak memory of one
-# vectorized force call. Writes results/memory_*.csv, results/memory_limits.txt and the figure.
+# Task 7: memory of the (N,N,2) array vs N, and the real peak of one vectorized force call
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "member1_baseline_verification"))
 import toymodel as tm
@@ -39,8 +38,7 @@ for N in [100, 1000, 5000, 10000]:
     for dtype in [np.float32, np.float64]:
         item = np.dtype(dtype).itemsize
         theory = N * N * 2 * item
-        # pairwise_distances keeps d and makes d*d of the same size, so its own peak is
-        # roughly 2.5 x d; skip the case where that goes above ~2.5 GB (N=10000 float64)
+        # its peak is ~2.5 x d (d plus d*d), so skip N=10000 float64 which would pass 2.5 GB
         if 2.5 * theory < 2.6 * GB:
             np.random.seed(0)
             pos = (np.random.rand(N, 2) * np.sqrt(N / 0.12)).astype(dtype)
@@ -84,14 +82,12 @@ with open(res("memory_peak_pair_forces.csv"), "w") as fh:
 avail = mem_available()
 lines = [f"MemTotal {mem_total() / GB:.2f} GB, MemAvailable at start of part B {avail_start / GB:.2f} GB, "
          f"at end {avail / GB:.2f} GB (other members were running too)"]
-fits = {}
 for dt in ["float64", "float32"]:
     r = np.array([x for x in out_rows if x[1] == dt and x[0] >= 2000], dtype=object)
     Ns = r[:, 0].astype(float)
     a_mem = np.mean(r[:, 3].astype(float) / Ns**2)       # peak = a_mem * N^2
     a_t = np.mean((r[:, 6].astype(float)) / Ns**2)        # t_call = a_t * N^2
     a_tp = np.mean((r[:, 9].astype(float)) / Ns**2)
-    fits[dt] = (a_mem, a_t)
     lines.append(f"\n{dt}: peak ~ {a_mem:.2f} * N^2 bytes, t_force ~ {a_t:.3e} * N^2 s, "
                  f"t_potential ~ {a_tp:.3e} * N^2 s  (fit on N >= 2000)")
     for name, limit in [("5 GB budget", BUDGET), ("MemAvailable now", avail), ("MemTotal", mem_total())]:

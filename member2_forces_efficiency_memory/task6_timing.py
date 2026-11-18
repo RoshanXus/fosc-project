@@ -1,6 +1,4 @@
-# Task 6: time the pair-force calculation with a Python loop, NumPy and C (-O0, -O2).
-# Run compile_c.py first (it builds libpairforce_O0.so / libpairforce_O2.so).
-# Writes the raw timings and checks to results/*.csv; task6_plots.py makes the figures.
+# Task 6: time pair forces with a Python loop, NumPy and C via ctypes (run compile_c.py first)
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "member1_baseline_verification"))
 import toymodel as tm
@@ -67,8 +65,7 @@ def time_it(fn, repeats=REPEATS, min_time=0.05):
 
 
 def time_interleaved(methods, repeats=REPEATS):
-    # repeats are interleaved (method A, B, C, A, B, C, ...) so that a burst of load
-    # from other users on the shared machine hits all methods, not just one
+    # interleaved (A, B, C, A, B, C) so load bursts on the shared machine hit every method
     numbers = {name: time_it(fn, repeats=1)[1] for name, fn in methods.items()}
     times = {name: [] for name in methods}
     for _ in range(repeats):
@@ -82,8 +79,7 @@ def time_interleaved(methods, repeats=REPEATS):
 
 
 def pair_forces_xy(pos, k=K, r0=R0, rc=RC):
-    # my variant for the bottleneck test: same maths as tm.pair_forces, but x and y are
-    # kept in separate (N, N) arrays instead of one (N, N, 2) array
+    # same maths as tm.pair_forces, but separate (N, N) x and y arrays instead of one (N, N, 2)
     x, y = pos[:, 0], pos[:, 1]
     dx = x[:, None] - x[None, :]
     dy = y[:, None] - y[None, :]
@@ -146,8 +142,6 @@ for N in NS:
     ctypes_rows.append([N, med["c_O2"], med["c_O2_wrapper"], med["c_O2_wrapper"] - med["c_O2"]])
 
     # ---- NumPy bottleneck: time each line of tm.pair_forces separately ----
-    # d: pos[:,None,:]-pos[None,:,:]   dist: sqrt(sum(d*d, axis=2))   neighbors: (dist>0)&(dist<=rc)
-    # u: d/(dist[:,:,None]+1e-12)      fmag: -k*(dist-r0)*neighbors   F_sum: sum(fmag[:,:,None]*u, axis=1)
     u = d / (dist[:, :, None] + 1e-12)
     fmag = -K * (dist - R0) * nb
     stages = {

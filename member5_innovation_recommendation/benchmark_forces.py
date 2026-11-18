@@ -1,5 +1,4 @@
-# benchmark_forces.py - time and memory of one force evaluation vs N at fixed density
-# numpy = tm.pair_forces (handout), numba all-pairs, numba cell list
+# Task 8: time and memory of one force call vs N at fixed density: NumPy, Numba all-pairs, Numba cell list
 import sys, os, time, tracemalloc, subprocess
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "member1_baseline_verification"))
 import toymodel as tm
@@ -80,8 +79,8 @@ for N in NS:
     if N <= NMAX_ALLPAIRS:
         t_all, _ = median_time(lambda: all_fn(pos))
     cell_fn = cf.make_cell_force(L)
-    t_cell, num = median_time(lambda: cell_fn(pos))
-    head, nxt, ncell = cf.build_cells(pos, L, tm.RC)
+    t_cell, _ = median_time(lambda: cell_fn(pos))
+    _, _, ncell = cf.build_cells(pos, L, tm.RC)
     rows.append([N, L, ncell, t_np, t_all, t_cell, t_np / t_cell, t_all / t_cell, t_cell / N * 1e9])
     print("N=%7d  numpy %.3e  allpairs %.3e  cell %.3e  speedup np/cell %.1f  all/cell %.1f" % (
         N, t_np, t_all, t_cell, t_np / t_cell, t_all / t_cell))

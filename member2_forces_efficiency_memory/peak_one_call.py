@@ -1,6 +1,4 @@
-# Helper for task7_memory.py: measures ONE configuration in a fresh process so that the
-# memory numbers are not mixed up with earlier runs.
-# usage: python3 peak_one_call.py N dtype     (dtype = float32 or float64)
+# Task 7 helper: one N/dtype per fresh process so peaks do not mix (args: N float32|float64)
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "member1_baseline_verification"))
 import toymodel as tm
@@ -17,8 +15,7 @@ pos = (np.random.rand(N, 2) * L).astype(dtype)
 
 
 def vm_hwm():
-    # peak resident memory of this process in bytes. (ru_maxrss from getrusage did not work:
-    # it is inherited from the parent process, which had already used ~2 GB in part A)
+    # peak RSS in bytes; not ru_maxrss, which is inherited from the ~2 GB parent process
     for line in open("/proc/self/status"):
         if line.startswith("VmHWM"):
             return int(line.split()[1]) * 1024
@@ -29,7 +26,7 @@ rss_before = vm_hwm()
 
 tracemalloc.start()
 F = tm.pair_forces(pos)
-current, peak = tracemalloc.get_traced_memory()
+_, peak = tracemalloc.get_traced_memory()
 tracemalloc.stop()
 rss_after = vm_hwm()
 assert F.dtype == dtype

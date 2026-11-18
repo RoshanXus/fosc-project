@@ -1,5 +1,6 @@
-# animate_default.py - Task 2: animation of the default system and diagnostics from the trajectory
+# Task 2: animation of the default system and diagnostics from its trajectory
 import sys, os
+os.chdir(os.path.dirname(os.path.abspath(__file__)))  # results/ is relative to this folder
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "member1_baseline_verification"))
 import numpy as np
 import matplotlib
@@ -20,7 +21,7 @@ def draw_frame(ax, P, i, t_arr, E, npairs, every, title=None, fs=9):
     ax.clear()
     ax.add_patch(plt.Rectangle((0, 0), L, L, fill=False, lw=2.0, color="k"))
     pos = P[i]
-    _, dist, nb = tm.pairwise_distances(pos, tm.RC)
+    _, _, nb = tm.pairwise_distances(pos, tm.RC)
     I, J = np.nonzero(np.triu(nb, 1))
     for a, b in zip(I, J):
         ax.plot([pos[a, 0], pos[b, 0]], [pos[a, 1], pos[b, 1]], color="#8a8a86", lw=0.8, zorder=1)
@@ -129,8 +130,7 @@ with open("results/diagnostics_dt.csv", "w") as f:
 for rr in rows:
     print(rr)
 
-# ---- two-particle check: can a single pair capture each other without a third particle? ----
-# two particles approach from r = 3 with relative speed 0.2, head on (b = 0) and offset (b = 0.5)
+# ---- can a lone pair (r = 3, offset b) capture each other without a third particle? ----
 with open("results/two_particle_capture.csv", "w") as f:
     f.write("b,dt,rmin,time_inside_rc,final_r,x0_start,x0_end,Esh_start,Esh_end\n")
     for b in [0.0, 0.5]:

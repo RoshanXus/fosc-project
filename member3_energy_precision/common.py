@@ -1,4 +1,4 @@
-# small helpers shared by my scripts (energy bookkeeping, pair counting)
+# Member 3 helpers shared by the scripts here: energy bookkeeping and pair counting
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "member1_baseline_verification"))
 import numpy as np
@@ -40,9 +40,7 @@ def eps_max(E):
 
 
 def relaxed_cluster():
-    # squeeze the seed-0 positions into a 2x2 region and let them slide downhill (all pairs
-    # interacting) until the forces vanish; gives a compact cluster with max pair distance ~1.1,
-    # so with rc = 2 every pair interacts and no pair ever crosses the cutoff
+    # relax a squeezed seed-0 start to a cluster with all pairs < ~1.1, so no pair ever crosses rc = 2
     from functools import partial
     pos, vel, mass = tm.init_system()
     x = 5.0 + 0.2 * (pos - 5.0)
