@@ -114,9 +114,9 @@ From `results/relaxation_table.csv`. "Final" means t = 600. Clusters are connect
 |---|---|---|---|---|---|---|---|---|---|
 | 0 | never | never | - | - | - | 742.68 (U = 36.02) | 634.68 | 10 | 5 2 2 1 1 1 |
 | 0.05 | 348.94 | 168.9 | 0.0502 | 0.05 | 352.7 | 30.585 | -563.42 | 55 | 11 1 |
-| 0.1 | 192.26 | 107.11 | 0.1001 | 0.1 | 193.0 | 30.585 | -563.42 | 55 | 11 1 |
-| 0.5 | 30.91 | 16.3 | 0.5005 | 0.5 | 31.5 | 8.672 | -228.93 | 22 | 7 2 1 1 1 |
-| 1 | 15.87 | 8.45 | 1.0004 | 1 | 16.7 | 8.672 | -228.93 | 22 | 7 2 1 1 1 |
+| 0.1 | 192.26 | 107.11 | 0.1002 | 0.1 | 193.0 | 30.585 | -563.42 | 55 | 11 1 |
+| 0.5 | 30.91 | 16.3 | 0.5007 | 0.5 | 31.5 | 8.672 | -228.93 | 22 | 7 2 1 1 1 |
+| 1 | 15.87 | 8.45 | 1.0005 | 1 | 16.7 | 8.672 | -228.93 | 22 | 7 2 1 1 1 |
 | 2 | 8.29 | 4.49 | 1.998 | 2 | 8.45 | 8.672 | -228.93 | 22 | 7 2 1 1 1 |
 | 5 | 6.31 | 3.22 | 2.139 | 2.128 | 3.81 | 8.672 | -218.13 | 21 | 7 1 1 1 1 1 |
 | 10 | 13.11 | 7.55 | 0.816 | 0.876 | 2.88 | 8.672 | -218.13 | 21 | 7 1 1 1 1 1 |
@@ -135,7 +135,7 @@ The lowest Hessian eigenvalue at every final state is between -3.2e-5 and -2e-10
 ![K on a log scale](results/kinetic_decay_log.png)
 
 **How gamma affects the relaxation time.**
-- For gamma up to 2 the clusters are under-damped, and K decays exactly like exp(-gamma t): the fitted rate divided by gamma is 1.004, 1.001, 1.001, 1.000 and 0.999. So the simple estimate predicts t_relax to within about 5% (348.9 vs 352.7 for gamma = 0.05), and t_relax * gamma stays between 15.5 and 19.2.
+- For gamma up to 2 the clusters are under-damped, and K decays exactly like exp(-gamma t): the fitted rate divided by gamma is 1.004, 1.002, 1.001, 1.000 and 0.999. So the simple estimate predicts t_relax to within about 5% (348.9 vs 352.7 for gamma = 0.05), and t_relax * gamma stays between 15.5 and 19.2.
 - Above about 2 omega_min = 4.1 the motion is over-damped. The softest mode then creeps back slowly, at a rate of about 2 omega_min^2 / gamma, so relaxation gets slower again: t_relax = 6.31, 13.11 and 16.68 for gamma = 5, 10 and 20.
 - The simple exp(-gamma t) estimate fails in this regime (it gives 2.9 to 4.3). The mode prediction gets the decay rate right (0.423 vs 0.434 fitted for gamma = 20). It gets t_relax less well (31.7 vs 16.7), because the starting speed is not all in the slowest mode.
 - The fastest relaxation is close to critical damping, between gamma = 2 and 10 (the best of our values is gamma = 5).
